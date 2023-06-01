@@ -7,5 +7,12 @@ express
 
 node
 
+### install modules:
+**npm install**
+
 ### run (live server style):
+**npm run start-nodemon**
+
+oder
+
 **nodemon server/index.js localhost 3000**

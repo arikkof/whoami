@@ -4,6 +4,8 @@
   "description": "WEB 23 Project of Team AH",
   "main": "server/index.js",
   "scripts": {
+    "start": "node server/server.js",
+    "start-nodemon": "nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

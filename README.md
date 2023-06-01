@@ -24,12 +24,11 @@ oder
 **nodemon server/index.js localhost 3000**
 
 ## ENDPOINTS
-- >GET /api?name=example => gives back the Data from the APIs mentioned above
+- *GET /api?name=example => gives back the Data from the APIs mentioned above*
 
     in this form: 
 
-    ~~~
-    {
+```
 
     "example": {
         "Agify": {
@@ -68,6 +67,4 @@ oder
             ]
         }
     }
-}
-~~~
-
+```

@@ -7,6 +7,12 @@ express
 
 node
 
+## API USES:
+- https://agify.io/
+- https://genderize.io/
+- https://nationalize.io/
+
+
 ### install modules:
 **npm install**
 

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/arikkof/whoami#readme",
   "dependencies": {
+    "bulma": "^0.9.4",
     "express": "^4.18.2"
   },
   "devDependencies": {

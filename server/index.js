@@ -68,9 +68,9 @@ async function requestAPI(name){
       let allInfo = await allPromise;
       let allData = {
         [name]:{
-            "Agify": await allInfo[0],
-            "Genderize": await allInfo[1], 
-            "Nationalize": await allInfo[2]
+            "Agify":  allInfo[0],
+            "Genderize":  allInfo[1], 
+            "Nationalize":  allInfo[2]
         }
       }
       return allData;

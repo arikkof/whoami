@@ -6,7 +6,7 @@ const dataModel = require("./data-model.js");
 const port = 3000
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'files')));
+app.use(express.static(path.join(__dirname, 'client')));
 
 async function requestAgify(name){
     return fetch('https://api.agify.io?name='+name).then(response => {
@@ -79,9 +79,6 @@ async function requestAPI(name){
     }
 }
 
-app.get('/', (req, res) => {
-    res.send('Hello Wooofsdgbdsgfoorld!')
-})
 
 app.get('/api', async (req,res) => {
     //API CALL => http://localhost:3000/api?name=.....

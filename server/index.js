@@ -63,17 +63,20 @@ async function requestNationalize(name){
 }
 
 async function requestAPI(name){
-    let agifyData =  await requestAgify(name);
-    let genderizeData =  await requestGenderize(name);
-    let nationalizeData = await requestNationalize(name);
-    let allData = {
+    let allPromise = Promise.all([requestAgify(name),requestGenderize(name),requestNationalize(name)]);
+    try{
+      let allInfo = await allPromise;
+      let allData = {
         [name]:{
-            "Agify": agifyData,
-            "Genderize": genderizeData, 
-            "Nationalize": nationalizeData
+            "Agify": await allInfo[0],
+            "Genderize": await allInfo[1], 
+            "Nationalize": await allInfo[2]
         }
+      }
+      return allData;
+    }catch(error){
+      console.log("One or More Promises got rejected")
     }
-    return allData;
 }
 
 app.get('/', (req, res) => {
@@ -85,6 +88,22 @@ app.get('/api', async (req,res) => {
     let data = await requestAPI(req.query.name);
     res.set('Content-Type', 'application/json')
     res.send(data)
+})
+
+app.get('/:name', (req,res)=>{
+    res.send(req.params.name);
+})
+
+app.delete('/:name', (req,res)=>{
+  
+})
+
+app.post('/:name', (req,res)=>{
+  
+})
+
+app.put('/:name', (req,res)=>{
+  
 })
 
 app.listen(port, () => {

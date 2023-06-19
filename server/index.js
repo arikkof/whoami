@@ -90,19 +90,23 @@ app.get('/api', async (req,res) => {
     res.send(data)
 })
 
-app.get('/:name', (req,res)=>{
+app.get('/names', (req,res)=>{
+    res.send("TEST /names")
+})
+
+app.get('/names/:name', (req,res)=>{
     res.send(req.params.name);
 })
 
-app.delete('/:name', (req,res)=>{
+app.delete('/names/:name', (req,res)=>{
   
 })
 
-app.post('/:name', (req,res)=>{
+app.post('/names/:name', (req,res)=>{
   
 })
 
-app.put('/:name', (req,res)=>{
+app.put('/names/:name', (req,res)=>{
   
 })
 

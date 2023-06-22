@@ -1,7 +1,11 @@
-body {
+.body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  background-color: #2A2E37;
+}
+
+.main{
   background-color: #2A2E37;
 }
 
@@ -19,7 +23,7 @@ body {
   font-size: 24px;
   font-weight: bold;
   margin: auto;
-  padding-right: 5%;
+  padding: auto;
 }
 
 .navbar-login {
@@ -66,7 +70,7 @@ body {
   font-size: 20px;
   cursor: pointer;
   background-color: #111;
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 10px 15px;
   border: none;
 }
@@ -81,7 +85,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  padding: 20px;
+  padding-left: 5%;
 }
 
 .header{
@@ -99,7 +103,7 @@ body {
   border-radius: 5px;
 }
 
-.search-input {
+.name {
   width: 250px;
   height: 40px;
   padding: 8px;
@@ -125,7 +129,15 @@ body {
   background-color: #4572a0c2;
 }
 
+.results {
+  display: none;
+  background-color: #ffffff;
+}
 
+.chartdiv {
+  width: 100%;
+  height: 600px
+}
 
 @media screen and (max-height: 450px) {
   .sidebar {

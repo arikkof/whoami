@@ -3,6 +3,8 @@ const path = require("path");
 const app = express()
 //dataModel werden wir später brauchen für die Session Sachen
 const dataModel = require("./data-model.js");
+const historyModel = require("./history-model.js");
+const OpenAiKey = "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";
 const port = 3000
 
 app.use(express.json());
@@ -88,19 +90,35 @@ app.get('/api', async (req,res) => {
 })
 
 app.get('/names', (req,res)=>{
-    res.send("TEST /names")
+  res.json(historyModel.getAllData());
+  console.log(historyModel.getAllData());
 })
 
 app.get('/names/:name', (req,res)=>{
-    res.send(req.params.name);
+  const name = req.params.name;
+  const data = historyModel.getData(name);
+
+  res.json({ [name]: data });
 })
 
 app.delete('/names/:name', (req,res)=>{
-  
+  const name = req.params.name;
+  const success = historyModel.deleteData(name);
+
+  if (success) {
+    res.send(`Deleted data for name: ${name}`);
+  } else {
+    res.status(404).send(`Data for name: ${name} not found`);
+  } 
 })
 
 app.post('/names/:name', (req,res)=>{
-  
+  const requestBody = req.body;
+  const name = req.params.name;
+
+  historyModel.storeData(name, requestBody); // Assuming a function named `storeData` in "history-model.js" module
+
+  res.send('Request received.');
 })
 
 app.put('/names/:name', (req,res)=>{

@@ -88,6 +88,8 @@ window.onload = function () {
   
   
   
-  function edit_person(name){}
+  function edit_person(name){
+    window.location.href = `/edit_person.html?name=${encodeURIComponent(name)}`;
+  }
 
   

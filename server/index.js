@@ -91,7 +91,7 @@ app.get('/api', async (req,res) => {
 
 app.get('/names', (req,res)=>{
   res.json(historyModel.getAllData());
-  console.log(historyModel.getAllData());
+ 
 })
 
 app.get('/names/:name', (req,res)=>{
@@ -121,9 +121,16 @@ app.post('/names/:name', (req,res)=>{
   res.send('Request received.');
 })
 
-app.put('/names/:name', (req,res)=>{
-  
-})
+app.put('/names/:name', (req, res) => {
+  const name = req.params.name;
+  const data = req.body; // Assuming the updated data is sent in the request body
+
+  // Update the data using the storeData function
+  historyModel.storeData(name, data);
+
+  res.send('Data updated successfully');
+});
+
 
 app.listen(port, () => {
     console.log(`Server now listening on http://localhost:${port}/`)

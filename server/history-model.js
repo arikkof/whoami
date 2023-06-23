@@ -1,11 +1,19 @@
 let historyData = {};
-
 function storeData(name, data) {
   if (!historyData[name]) {
     historyData[name] = [];
   }
 
-  historyData[name].push(data);
+  // Check if data with the same name already exists
+  const existingDataIndex = historyData[name].findIndex(item => item.id === data.id);
+  
+  if (existingDataIndex !== -1) {
+    // Update existing data
+    historyData[name][existingDataIndex] = data;
+  } else {
+    // Add new data
+    historyData[name].push(data);
+  }
 }
 
 function getData(name) {

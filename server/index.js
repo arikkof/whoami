@@ -116,14 +116,14 @@ app.post('/names/:name', (req,res)=>{
   const requestBody = req.body;
   const name = req.params.name;
 
-  historyModel.storeData(name, requestBody); // Assuming a function named `storeData` in "history-model.js" module
+  historyModel.storeData(name, requestBody);
 
   res.send('Request received.');
 })
 
 app.put('/names/:name', (req, res) => {
   const name = req.params.name;
-  const data = req.body; // Assuming the updated data is sent in the request body
+  const data = req.body;
 
   // Update the data using the storeData function
   historyModel.storeData(name, data);

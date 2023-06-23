@@ -61,10 +61,8 @@ window.onload = function() {
     xhr.onload = function() {
       if (xhr.status === 200) {
         console.log('Data updated successfully');
-        // Perform any necessary actions after successful data update
       } else {
         console.error('Data update failed');
-        // Perform any necessary actions in case of update failure
       }
     };
     xhr.onerror = function() {

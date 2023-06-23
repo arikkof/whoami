@@ -19,7 +19,7 @@ function update_to_results(){
   document.getElementById("center").style.display = "none"; // Hide the center section
   document.getElementById("results").style.display = "block"; // Show the results section
 
-  // Make an HTTP GET request to the /search endpoint
+  // Make an HTTP GET request to the /api endpoint
   const xhr = new XMLHttpRequest();
   xhr.open("GET", "/api?name=" + name);
   xhr.send();
@@ -43,7 +43,6 @@ function update_to_results(){
 
       // Insert the HTML into the resultsDiv
       resultsDiv.innerHTML = html;
-const box = document.createElement("ul")
       // Reset the input field value
       nameInput.value = "";
       

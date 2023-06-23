@@ -7,7 +7,7 @@ function closeNav() {
   document.getElementById("mySidebar").style.width = "0";
   document.getElementById("main").style.marginLeft = "0";
 }
-
+/*
 window.onload = function() {
   const urlParams = new URLSearchParams(window.location.search);
   const name = urlParams.get('name');
@@ -71,3 +71,84 @@ window.onload = function() {
     xhr.send(JSON.stringify(updatedData));
   });
 };
+*/
+
+
+function setPerson(data) {
+  const nameInput = document.getElementById('name');
+  nameInput.value = person_name;
+  const nameData = data[person_name][0]; // Accessing the object within the specified name array
+  const ageInput = document.getElementById('age');
+  const genderInput = document.getElementById('gender');
+  const nationalizeInput = document.getElementById('nat');
+
+  ageInput.value = nameData.Agify.age;
+  genderInput.value = nameData.Genderize.gender;
+  nationalizeInput.value = nameData.Nationalize.country[0].country_id;  
+
+}
+
+
+function getPerson() {
+  const age = document.getElementById('age').value;
+  const gender = document.getElementById('gender').value;
+  const nationalize = document.getElementById('nat').value;
+
+  const updatedData = {
+    Agify: {
+      age: age,
+      count: 4,
+    },
+    Genderize: {
+      count: 4,
+      gender: gender,
+      probability: 1
+    },
+    Nationalize: {
+      country: [
+        { country_id: nationalize, probability: 0.248 },
+        { country_id: 'DZ', probability: 0.245 },
+        { country_id: 'SQ', probability: 0.184 },
+        { country_id: 'GR', probability: 0.173 },
+        { country_id: 'CL', probability: 0.079 }
+      ]
+    }
+  };
+
+  return updatedData;
+}
+
+
+
+function putPerson() {
+  const data = getPerson();
+
+  const xhr = new XMLHttpRequest()
+  xhr.onload = function() {
+    if (xhr.status == 200 || xhr.status === 204) {
+      location.href = 'index.html'
+    } else {
+      alert("Saving of person data failed. Status code was " + response.status)
+    }
+  }
+  xhr.open("PUT", "/names/" + person_name)
+  xhr.setRequestHeader("Content-Type", "application/json")
+
+  xhr.send(JSON.stringify(data))
+
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+const person_name = urlParams.get('name');
+
+const xhr = new XMLHttpRequest();
+xhr.open("GET", "/names/" + person_name);
+xhr.onload = function() {
+  if (xhr.status === 200) {
+    setPerson(JSON.parse(xhr.responseText));
+  } else {
+    alert("Loading of person data failed. Status was " + xhr.status + " - " + xhr.statusText);
+  } 
+}
+
+xhr.send()

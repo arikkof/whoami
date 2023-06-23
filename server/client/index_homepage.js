@@ -13,8 +13,8 @@ document.getElementById("search-button").addEventListener("click", () => update_
 
 function update_to_results(){
   
-  const nameInput = document.getElementById("name");
-  const name = nameInput.value; // Get the value from the input field
+  const nameInputElement = document.getElementById("name");
+  const name = nameInputElement.value; // Get the value from the input field
 
   document.getElementById("center").style.display = "none"; // Hide the center section
   document.getElementById("results").style.display = "block"; // Show the results section
@@ -27,9 +27,9 @@ function update_to_results(){
   xhr.onload = function() {
     if (xhr.status === 200) {
       const data = JSON.parse(xhr.responseText);
-
       // Handle the JSON response
       const resultsDiv = document.getElementById('results');
+      // TODO: really always show first element? why not just show data[name] using name as previously retrieved from nameInputElement?
       const name = Object.keys(data)[0];
       resultData = data[name];
 
@@ -44,7 +44,7 @@ function update_to_results(){
       // Insert the HTML into the resultsDiv
       resultsDiv.innerHTML = html;
       // Reset the input field value
-      nameInput.value = "";
+      nameInputElement.value = "";
       
       // Add event listener to go back button in the results section
       const backButton = document.createElement("button");
@@ -70,22 +70,19 @@ function update_to_results(){
     console.log("Request failed. Network error.");
   };
 }
-
-
-
 function sendData(name) {
   const addToHistoryXHR = new XMLHttpRequest();
-  const savedPerson = resultData;
+  const personToSave = resultData;
 
   addToHistoryXHR.open("POST", "/names/"+name);
   addToHistoryXHR.setRequestHeader("Content-Type", "application/json");
   addToHistoryXHR.onload = function () {
       if (addToHistoryXHR.status === 200) {
         console.log("person added successfully");
-        console.log(savedPerson);
+        console.log(personToSave);
       } else {
         console.error("Failed to add person");
       }
     };
-    addToHistoryXHR.send(JSON.stringify(savedPerson));
+    addToHistoryXHR.send(JSON.stringify(personToSave));
 }

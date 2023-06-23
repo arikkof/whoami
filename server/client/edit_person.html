@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Who Am I? | Homepage</title>
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="edit_person.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 </head>
@@ -18,24 +18,29 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="/">Home</a> 
         <a href="/search_history.html">Search history</a>
-        <a href="/edit_person.html">Profile</a>
+        <a href="#">Profile</a>
         <a href="/about_us.html">About us</a>
     </div>
       <main id="main">
-            <div id="center" class="center">   
-        <h1 class="header">WHO AM I?</h1>
-        <form id="search" class="search" >
-            <input id="name" class="name" required></input> 
-            <button id="search-button" type="button" class="search-button">icon</button>
+        <h1>Edit Person</h1>
+  
+        <form id="editForm">
+          <label for="name">Name:</label>
+          <p></p>
+          <input type="text" id="name" name="name" readonly>
+          <p></p>
+          <input type="text" id="age" name="age" >
+          <p></p>
+          <input type="text" id="gender" name="gender" >
+          <p></p>
+          <input type="text" id="nat" name="country" >
+          <p></p>
+          <button type="submit">Save</button>
         </form>
-    </div>
-
-    <div class="results" id="results"></div>
-
-    <div id="chartdiv"></div>
+      
       </main>
 
 
-    <script type="text/javascript" src="index_homepage.js"></script>
+    <script type="text/javascript" src="edit_person.js"></script>
 </body>
 </html>

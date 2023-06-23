@@ -1,7 +1,11 @@
-body {
+.body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-color: #2A2E37;
+  }
+  
+  .main{
     background-color: #2A2E37;
   }
   
@@ -19,6 +23,7 @@ body {
     font-size: 24px;
     font-weight: bold;
     margin: auto;
+    padding: auto;
   }
   
   .navbar-login {
@@ -65,14 +70,18 @@ body {
     font-size: 20px;
     cursor: pointer;
     background-color: #111;
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 10px 15px;
     border: none;
   }
   
   .openbtn:hover {
     background-color: #444;
-    }
+  }
+  
+  .search-button:hover {
+    background-color: #4572a0c2;
+  }
   
   
   @media screen and (max-height: 450px) {

@@ -26,17 +26,15 @@
   
         <form id="editForm">
           <label for="name">Name:</label>
-          <p></p>
           <input type="text" id="name" name="name" readonly>
-          <p></p>
+          <label for="age">Age:</label>
           <input type="text" id="age" name="age" >
-          <p></p>
+          <label for="gender">Gender:</label>
           <input type="text" id="gender" name="gender" >
-          <p></p>
+          <label for="nat">Nationality:</label>
           <input type="text" id="nat" name="country" >
-          <p></p>
-          <button type="button" onclick="putPerson()">Save</button>
-          <button type="button" onclick="location.href = 'index.html'">Cancel</button>
+          <button type="button" class ="editButtons" onclick="putPerson()">Save</button>
+          <button type="button" class ="editButtons" onclick="location.href = 'index.html'">Cancel</button>
         </form>
       
       </main>

@@ -34,27 +34,43 @@ function update_to_results(){
       resultData = data[name];
 
       // Create an HTML representation of the data
-      const html = `
-        <label>Name: ${name}</label><br>
-        <label>Age: ${resultData.Agify.age}</label><br>
-        <label>Gender: ${resultData.Genderize.gender}</label><br>
-        <label>Nationality: ${resultData.Nationalize.country[0].country_id}</label><br>
-      `;
 
-      // Insert the HTML into the resultsDiv
-      resultsDiv.innerHTML = html;
+      
+      const label1 = document.createElement('label');
+      label1.className = 'resultsData';
+      label1.textContent = 'Name: ' + name;
+      resultsDiv.appendChild(label1);
+
+      const label2 = document.createElement('label');
+      label2.className = 'resultsData';
+      label2.textContent = 'Age: ' + resultData.Agify.age;
+      resultsDiv.appendChild(label2);
+
+      const label3 = document.createElement('label');
+      label3.className = 'resultsData';
+      label3.textContent = 'Gender: ' + resultData.Genderize.gender;
+      resultsDiv.appendChild(label3);
+
+      const label4 = document.createElement('label');
+      label4.className = 'resultsData';
+      label4.textContent = 'Nationality: ' + resultData.Nationalize.country[0].country_id;
+      resultsDiv.appendChild(label4);
+
       // Reset the input field value
       nameInput.value = "";
       
       // Add event listener to go back button in the results section
       const backButton = document.createElement("button");
       backButton.textContent = "Go Back";
+      backButton.className = "resultsButtons";
       backButton.addEventListener("click", () => {
+        resultsDiv.innerHTML ="";
         resultsDiv.style.display = "none"; // Hide the results section
         document.getElementById("center").style.display = "block"; // Show the center section
       });
 
     const saveButton = document.createElement("button");
+    saveButton.className = "resultsButtons";
      saveButton.textContent = "Save";
      saveButton.addEventListener("click", function(){ sendData(name); });
 
@@ -81,9 +97,10 @@ function sendData(name) {
   addToHistoryXHR.setRequestHeader("Content-Type", "application/json");
   addToHistoryXHR.onload = function () {
       if (addToHistoryXHR.status === 200) {
-        console.log("person added successfully");
+        alert(`\"${name}\" was successfully saved!`);
         console.log(savedPerson);
       } else {
+        alert(`\"${name}\" was could not be saved!`)
         console.error("Failed to add person");
       }
     };

@@ -1,3 +1,6 @@
+const ACCEPT_TYPE_JSON = "application/json";
+const ACCEPT_TYPE_XML = "application/xml";
+const ACCEPT_TYPE = ACCEPT_TYPE_JSON;
 function openNav() {
   document.getElementById("mySidebar").style.width = "250px";
   document.getElementById("main").style.marginLeft = "250px";
@@ -22,12 +25,16 @@ function update_to_results(){
   // Make an HTTP GET request to the /api endpoint
   const xhr = new XMLHttpRequest();
   xhr.open("GET", "/api?name=" + name);
+  xhr.setRequestHeader('Accept', ACCEPT_TYPE);
   xhr.send();
 
   xhr.onload = function() {
     if (xhr.status === 200) {
+      if(xhr.getResponseHeader('content-type') === "application/xml; charset=utf-8") {
+        console.log("Sorry cannot parse XML in browser.");
+        return;
+      }
       const data = JSON.parse(xhr.responseText);
-
       // Handle the JSON response
       const resultsDiv = document.getElementById('results');
       const name = Object.keys(data)[0];

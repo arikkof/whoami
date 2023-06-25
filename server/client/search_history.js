@@ -17,14 +17,14 @@ window.onload = function () {
         const search_history = document.getElementById("search_history_list");
         const list_header = document.createElement("tr");
 
-        const name_header = document.createElement("td");
+        const name_header = document.createElement("th");
         name_header.textContent = "Name";
 
-        const edit_header = document.createElement("td");
-        edit_header.textContent = "edit";
+        const edit_header = document.createElement("th");
+        edit_header.textContent = "Edit";
 
-        const delete_header = document.createElement("td");
-        delete_header.textContent = "delete";
+        const delete_header = document.createElement("th");
+        delete_header.textContent = "Delete";
 
         list_header.appendChild(name_header);
         list_header.appendChild(edit_header);
@@ -44,11 +44,13 @@ window.onload = function () {
             const editCell = document.createElement("td");
             const editButton = document.createElement("button");
             editButton.textContent = "Edit";
+            editButton.className ="searchHistoryButtons";
             editButton.addEventListener("click",  function(){ edit_person(name); });
             editCell.appendChild(editButton);
   
             const deleteCell = document.createElement("td");
             const deleteButton = document.createElement("button");
+            deleteButton.className ="searchHistoryButtons";
             deleteButton.textContent = "Delete";
             deleteButton.addEventListener("click",  function(){ delete_person(name); });
             deleteCell.appendChild(deleteButton);

@@ -4,6 +4,7 @@ const app = express()
 //dataModel werden wir später brauchen für die Session Sachen
 const dataModel = require("./data-model.js");
 const historyModel = require("./history-model.js");
+const countryCodes = require('country-codes-list');
 const OpenAiKey = "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";
 const port = 3000
 const accepts = require('accepts'); // content negotiation
@@ -11,6 +12,7 @@ const xml2js = require('xml2js'); // XML Serialization
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'client')));
+const countryListObject = countryCodes.customList('countryCode', '{countryNameEn}');
 
 async function requestAgify(name){
     return fetch('https://api.agify.io?name='+name).then(response => {
@@ -70,11 +72,15 @@ async function requestAPI(name){
     let allPromise = Promise.all([requestAgify(name),requestGenderize(name),requestNationalize(name)]);
     try{
       let allInfo = await allPromise;
+      let nationalizeData = allInfo[2];
+      for(let i in nationalizeData.country){
+        nationalizeData.country[i].country_name = countryListObject[allInfo[2].country[i].country_id]
+      }
       let allData = {
         [name]:{
             "Agify":  allInfo[0],
             "Genderize":  allInfo[1], 
-            "Nationalize":  allInfo[2]
+            "Nationalize":  nationalizeData
         }
       }
       return allData;

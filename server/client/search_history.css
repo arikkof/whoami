@@ -8,6 +8,93 @@
   .main{
     background-color: #2A2E37;
   }
+
+  .search_history_list{
+    font-family: 'Open Sans Condensed', arial, sans;
+    border-radius: 20px;
+    width: 50%;
+    padding: 50px;
+    background: #FFFFFF;
+    margin: 50px auto;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+    
+  }
+  table{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 15px;
+  }
+  table th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #505f8b;
+    color: white;
+  }
+  table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  table tr:nth-child(even){
+    background-color: #f2f2f2;
+  }
+  table tr:hover {
+    background-color: #ababab;
+  }
+  .searchHistoryButtons {
+    appearance: none;
+    background-color: #505f8b;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  
+  .searchHistoryButtons:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .searchHistoryButtons:hover {
+    background-color: #505f8b;
+  }
+  
+  .searchHistoryButtons:focus {
+    box-shadow: #687bb4 0 0 0 3px;
+    outline: none;
+  }
+  
+  .searchHistoryButtons:disabled {
+    background-color: #505f8b;
+    border-color: rgba(27, 31, 35, .1);
+    color: rgba(255, 255, 255, .8);
+    cursor: default;
+  }
+  
+  .searchHistoryButtons:active {
+    background-color: #505f8b;
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  }
+
   
   .navbar {
     background-color: #000;
@@ -137,23 +224,6 @@
 
     .button-container button {
       padding: 8px 16px;
-    }
-
-    table {
-      width: 100%;
-      background-color: #f1f1f1;
-    }
-
-    th,
-    td {
-      padding: 8px;
-      text-align: left;
-      background-color: #f1f1f1;
-
-    }
-
-    th {
-      background-color: #f1f1f1;
     }
   
   @media screen and (max-height: 450px) {

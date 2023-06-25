@@ -23,6 +23,7 @@
     "@amcharts/amcharts5-fonts": "^5.0.1",
     "@amcharts/amcharts5-geodata": "^5.1.1",
     "bulma": "^0.9.4",
+    "country-codes-list": "^1.6.10",
     "express": "^4.18.2",
     "openai": "^3.3.0"
   },

@@ -1,6 +1,6 @@
 
-let am5 = require('@amcharts/amcharts5');
-let am5xy = require('@amcharts/amcharts5/xy');
+import { Root, Legend } from '@amcharts/amcharts5';
+import { XYChart, ValueAxis, AxisRendererY, CategoryAxis, AxisRendererX, ColumnSeries, XYCursor } from '@amcharts/amcharts5/xy';
 
 function openNav() {
   document.getElementById("mySidebar").style.width = "250px";
@@ -115,9 +115,9 @@ function sendData(name) {
 }
 
 function createChart(apiData){
-  var root = am5.Root.new("chartdiv"); 
+  var root = Root.new("chartdiv"); 
   var chart = root.container.children.push( 
-  am5xy.XYChart.new(root, {
+  XYChart.new(root, {
     panY: false,
     layout: root.verticalLayout
     }) 
@@ -141,21 +141,21 @@ function createChart(apiData){
   }];
 
   var yAxis = chart.yAxes.push( 
-    am5xy.ValueAxis.new(root, { 
-      renderer: am5xy.AxisRendererY.new(root, {}) 
+    ValueAxis.new(root, { 
+      renderer: AxisRendererY.new(root, {}) 
     }) 
   );
 
   var xAxis = chart.xAxes.push(
-    am5xy.CategoryAxis.new(root, {
-      renderer: am5xy.AxisRendererX.new(root, {}),
+    CategoryAxis.new(root, {
+      renderer: AxisRendererX.new(root, {}),
       categoryField: "category"
     })
   );
   xAxis.data.setAll(data);
 
   var series1 = chart.series.push( 
-    am5xy.ColumnSeries.new(root, { 
+    ColumnSeries.new(root, { 
       name: "Nationality", 
       xAxis: xAxis, 
       yAxis: yAxis, 
@@ -165,10 +165,10 @@ function createChart(apiData){
   );
   series1.data.setAll(data);
 
-  var legend = chart.children.push(am5.Legend.new(root, {})); 
+  var legend = chart.children.push(Legend.new(root, {})); 
   legend.data.setAll(chart.series.values);
 
   // Add cursor
-  chart.set("cursor", am5xy.XYCursor.new(root, {}));
+  chart.set("cursor", XYCursor.new(root, {}));
 
 }

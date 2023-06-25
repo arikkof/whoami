@@ -1,3 +1,7 @@
+
+let am5 = require('@amcharts/amcharts5');
+let am5xy = require('@amcharts/amcharts5/xy');
+
 function openNav() {
   document.getElementById("mySidebar").style.width = "250px";
   document.getElementById("main").style.marginLeft = "250px";
@@ -71,8 +75,11 @@ function update_to_results(){
 
     const saveButton = document.createElement("button");
     saveButton.className = "resultsButtons";
-     saveButton.textContent = "Save";
-     saveButton.addEventListener("click", function(){ sendData(name); });
+    saveButton.textContent = "Save";
+    saveButton.addEventListener("click", function(){ sendData(name); });
+
+    createChart(resultData);
+
 
      resultsDiv.appendChild(backButton);
      resultsDiv.appendChild(saveButton);
@@ -105,4 +112,63 @@ function sendData(name) {
       }
     };
     addToHistoryXHR.send(JSON.stringify(savedPerson));
+}
+
+function createChart(apiData){
+  var root = am5.Root.new("chartdiv"); 
+  var chart = root.container.children.push( 
+  am5xy.XYChart.new(root, {
+    panY: false,
+    layout: root.verticalLayout
+    }) 
+  );
+
+  var data = [{ 
+    category: apiData.Nationalize.country[0].country_id, 
+    value1: apiData.Nationalize.country[0].probability
+  }, { 
+    category: apiData.Nationalize.country[1].country_id, 
+    value1: apiData.Nationalize.country[1].probability
+  }, { 
+    category: apiData.Nationalize.country[2].country_id, 
+    value1: apiData.Nationalize.country[2].probability
+  }, { 
+    category: apiData.Nationalize.country[3].country_id, 
+    value1: apiData.Nationalize.country[3].probability
+  }, { 
+    category: apiData.Nationalize.country[4].country_id, 
+    value1: apiData.Nationalize.country[4].probability   
+  }];
+
+  var yAxis = chart.yAxes.push( 
+    am5xy.ValueAxis.new(root, { 
+      renderer: am5xy.AxisRendererY.new(root, {}) 
+    }) 
+  );
+
+  var xAxis = chart.xAxes.push(
+    am5xy.CategoryAxis.new(root, {
+      renderer: am5xy.AxisRendererX.new(root, {}),
+      categoryField: "category"
+    })
+  );
+  xAxis.data.setAll(data);
+
+  var series1 = chart.series.push( 
+    am5xy.ColumnSeries.new(root, { 
+      name: "Nationality", 
+      xAxis: xAxis, 
+      yAxis: yAxis, 
+      valueYField: "value1", 
+      categoryXField: "category" 
+    }) 
+  );
+  series1.data.setAll(data);
+
+  var legend = chart.children.push(am5.Legend.new(root, {})); 
+  legend.data.setAll(chart.series.values);
+
+  // Add cursor
+  chart.set("cursor", am5xy.XYCursor.new(root, {}));
+
 }

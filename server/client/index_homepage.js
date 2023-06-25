@@ -1,6 +1,4 @@
 
-import { Root, Legend } from '@amcharts/amcharts5';
-import { XYChart, ValueAxis, AxisRendererY, CategoryAxis, AxisRendererX, ColumnSeries, XYCursor } from '@amcharts/amcharts5/xy';
 
 function openNav() {
   document.getElementById("mySidebar").style.width = "250px";
@@ -22,6 +20,7 @@ function update_to_results(){
 
   document.getElementById("center").style.display = "none"; // Hide the center section
   document.getElementById("results").style.display = "block"; // Show the results section
+  document.getElementById("chartdiv").style.display ="block";
 
   // Make an HTTP GET request to the /api endpoint
   const xhr = new XMLHttpRequest();
@@ -54,12 +53,10 @@ function update_to_results(){
       label3.className = 'resultsData';
       label3.textContent = 'Gender: ' + resultData.Genderize.gender;
       resultsDiv.appendChild(label3);
+      
+      //createHiddenLabelsNationality(resultsDiv,resultData);
 
-      const label4 = document.createElement('label');
-      label4.className = 'resultsData';
-      label4.textContent = 'Nationality: ' + resultData.Nationalize.country[0].country_id;
-      resultsDiv.appendChild(label4);
-
+      
       // Reset the input field value
       nameInput.value = "";
       
@@ -71,6 +68,7 @@ function update_to_results(){
         resultsDiv.innerHTML ="";
         resultsDiv.style.display = "none"; // Hide the results section
         document.getElementById("center").style.display = "block"; // Show the center section
+        document.getElementById("chartdiv").style.display ="none";
       });
 
     const saveButton = document.createElement("button");
@@ -78,11 +76,12 @@ function update_to_results(){
     saveButton.textContent = "Save";
     saveButton.addEventListener("click", function(){ sendData(name); });
 
-    createChart(resultData);
 
 
      resultsDiv.appendChild(backButton);
      resultsDiv.appendChild(saveButton);
+
+     createChart(resultData);
 
     } else {
       console.log("Request failed. Status: " + xhr.status);
@@ -113,62 +112,20 @@ function sendData(name) {
     };
     addToHistoryXHR.send(JSON.stringify(savedPerson));
 }
+/*
+function createHiddenLabelsNationality(whereToAdd,apiData){
+  for(let i=0;i<5;i++){
+      //NATIONALITIES
+      const nationalitylabel1_country = document.createElement('label');
+      nationalitylabel1_country.className = 'nationalities';
+      nationalitylabel1_country.id = 'country'+i+'_id';
+      nationalitylabel1_country.textContent = apiData.Nationalize.country[i].country_id;
+      whereToAdd.appendChild(nationalitylabel1_country);
 
-function createChart(apiData){
-  var root = Root.new("chartdiv"); 
-  var chart = root.container.children.push( 
-  XYChart.new(root, {
-    panY: false,
-    layout: root.verticalLayout
-    }) 
-  );
-
-  var data = [{ 
-    category: apiData.Nationalize.country[0].country_id, 
-    value1: apiData.Nationalize.country[0].probability
-  }, { 
-    category: apiData.Nationalize.country[1].country_id, 
-    value1: apiData.Nationalize.country[1].probability
-  }, { 
-    category: apiData.Nationalize.country[2].country_id, 
-    value1: apiData.Nationalize.country[2].probability
-  }, { 
-    category: apiData.Nationalize.country[3].country_id, 
-    value1: apiData.Nationalize.country[3].probability
-  }, { 
-    category: apiData.Nationalize.country[4].country_id, 
-    value1: apiData.Nationalize.country[4].probability   
-  }];
-
-  var yAxis = chart.yAxes.push( 
-    ValueAxis.new(root, { 
-      renderer: AxisRendererY.new(root, {}) 
-    }) 
-  );
-
-  var xAxis = chart.xAxes.push(
-    CategoryAxis.new(root, {
-      renderer: AxisRendererX.new(root, {}),
-      categoryField: "category"
-    })
-  );
-  xAxis.data.setAll(data);
-
-  var series1 = chart.series.push( 
-    ColumnSeries.new(root, { 
-      name: "Nationality", 
-      xAxis: xAxis, 
-      yAxis: yAxis, 
-      valueYField: "value1", 
-      categoryXField: "category" 
-    }) 
-  );
-  series1.data.setAll(data);
-
-  var legend = chart.children.push(Legend.new(root, {})); 
-  legend.data.setAll(chart.series.values);
-
-  // Add cursor
-  chart.set("cursor", XYCursor.new(root, {}));
-
-}
+      const nationalitylabel1_probability = document.createElement('label');
+      nationalitylabel1_probability.className = 'nationalities';
+      nationalitylabel1_probability.id = 'country'+i+'_probability';
+      nationalitylabel1_probability.textContent = apiData.Nationalize.country[i].probability;
+      whereToAdd.appendChild(nationalitylabel1_probability);
+  }
+}*/

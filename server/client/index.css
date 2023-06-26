@@ -17,6 +17,22 @@
   color: #f1f1f1;
 }
 
+
+
+.nationalities{
+  display: none;
+}
+
+#chartdiv {
+  display: none;
+  position: fixed;
+  background-color: #fff;
+  border-radius: 15px;
+  top: 50%; 
+  width: 100%;
+  height: 450px;
+}
+
 .search {
   padding-left: 10%;
   align-content: center;
@@ -52,10 +68,94 @@
 
 .results {
   display: none;
-  background-color: #ffffff;
+  margin: auto;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  width: 300px;
 }
 
-.chartdiv {
-  width: 100%;
-  height: 600px
+.resultsData {
+  display: block;
+  padding: 4px;
+  display: block;
+  margin-bottom: 10px;
 }
+
+.resultsButtons {
+  appearance: none;
+  background-color: #505f8b;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.resultsButtons:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.resultsButtons:hover {
+  background-color: #505f8b;
+}
+
+.resultsButtons:focus {
+  box-shadow: #687bb4 0 0 0 3px;
+  outline: none;
+}
+
+.resultsButtons:disabled {
+  background-color: #505f8b;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.resultsButtons:active {
+  background-color: #505f8b;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+.alert{
+  display: none;
+  width:30%;
+  margin:6px auto;
+  padding:24px;
+  position:relative;
+  border-radius:25px;
+  box-shadow:0 0 15px 4px #ccc;
+  box-sizing:border-box;
+}
+.close{
+  position:absolute;
+  width:30px;
+  height:30px;
+  opacity:0.5;
+  border-width:1px;
+  border-style:solid;
+  border-radius:50%;
+  right:15px;
+  top:25px;
+  text-align:center;
+  font-size:1.6em;
+  cursor:pointer;
+}
+

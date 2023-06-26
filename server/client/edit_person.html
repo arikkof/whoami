@@ -22,20 +22,19 @@
         <h1>Edit Person</h1>
         <form id="editForm">
           <label for="name">Name:</label>
-          <p></p>
           <input type="text" id="name" name="name" readonly>
-          <p></p>
+          <label for="age">Age:</label>
           <input type="text" id="age" name="age" >
-            <button type="button" onClick='patchPerson("age")'>Patch</button>
-          <p></p>
+          <button type="button" class ="editButtons" onClick='patchPerson("age")'>Patch</button>
+          <label for="gender">Gender:</label>
           <input type="text" id="gender" name="gender" >
-            <button type="button" onClick='patchPerson("gender")'>Patch</button>
-          <p></p>
+          <button type="button" class ="editButtons" onClick='patchPerson("gender")'>Patch</button>
+          <label for="nat">Nationality:</label>
           <input type="text" id="nat" name="country" >
-            <button type="button" onClick='patchPerson("country")'>Patch</button>
-          <p></p>
-          <button type="button" onclick="putPerson()">Save</button>
-          <button type="button" onclick="location.href = 'index.html'">Cancel</button>
+          <button type="button" class ="editButtons" onClick='patchPerson("country")'>Patch</button>
+          <button type="button" class ="editButtons" onclick="putPerson()">Save</button>
+          <button type="button" class ="editButtons" onclick="location.href = 'index.html'">Cancel</button>
+
         </form>
       </main>
     <script type="text/javascript" src="edit_person.js"></script>

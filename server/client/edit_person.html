@@ -23,15 +23,15 @@
         <form id="editForm">
           <label for="name">Name:</label>
           <input type="text" id="name" name="name" readonly>
-          <label for="age">Age:</label>
-          <input type="text" id="age" name="age" >
-          <button type="button" class ="editButtons" onClick='patchPerson("age")'>Patch</button>
+          <label for="age">Age:</label>  
+          <button type="button" class ="editButtons patch" onClick='patchPerson("age")'>Patch</button>
+          <input type="text" id="age" name="age">
           <label for="gender">Gender:</label>
+          <button type="button" class ="editButtons patch" onClick='patchPerson("gender")'>Patch</button>
           <input type="text" id="gender" name="gender" >
-          <button type="button" class ="editButtons" onClick='patchPerson("gender")'>Patch</button>
           <label for="nat">Nationality:</label>
+          <button type="button" class ="editButtons patch" onClick='patchPerson("country")'>Patch</button>
           <input type="text" id="nat" name="country" >
-          <button type="button" class ="editButtons" onClick='patchPerson("country")'>Patch</button>
           <button type="button" class ="editButtons" onclick="putPerson()">Save</button>
           <button type="button" class ="editButtons" onclick="location.href = 'index.html'">Cancel</button>
 

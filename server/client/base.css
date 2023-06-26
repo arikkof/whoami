@@ -24,6 +24,8 @@
     font-weight: bold;
     margin: auto;
     padding: auto;
+    position: fixed;
+    left: 47%;
   }
   
   .navbar-login {

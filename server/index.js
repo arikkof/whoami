@@ -7,6 +7,8 @@ const historyModel = require("./history-model.js");
 const countryCodes = require('country-codes-list');
 const OpenAiKey = "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";
 const port = 3000
+const accepts = require('accepts'); // content negotiation
+const xml2js = require('xml2js'); // XML Serialization
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'client')));
@@ -90,9 +92,20 @@ async function requestAPI(name){
 
 app.get('/api', async (req,res) => {
     //API CALL => http://localhost:3000/api?name=.....
+    const accept = accepts(req); // retrieve info from req accepts header
+    const type = accept.type(['json', 'xml']); // get type
     let data = await requestAPI(req.query.name);
-    res.set('Content-Type', 'application/json')
-    res.send(data)
+    if(type === 'json'){
+        res.set('Content-Type', 'application/json');
+        res.json(data);
+    } else if (type === 'xml') {
+        res.set('Content-Type', 'application/xml');
+        // make data xml
+        const xmlResponse = new xml2js.Builder().buildObject(data);
+        res.send(xmlResponse);
+    } else {
+        res.status(406).send('Not Acceptable');
+    }
 })
 
 app.get('/names', (req,res)=>{

@@ -72,10 +72,7 @@ function update_to_results(){
       backButton.textContent = "Go Back";
       backButton.className = "resultsButtons";
       backButton.addEventListener("click", () => {
-        resultsDiv.innerHTML ="";
-        resultsDiv.style.display = "none"; // Hide the results section
-        document.getElementById("center").style.display = "block"; // Show the center section
-        document.getElementById("chartdiv").style.display ="none";
+        location.reload(); // Reloads the page to reflect the updated data
       });
 
     const saveButton = document.createElement("button");

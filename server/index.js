@@ -199,12 +199,12 @@ app.use(sessions({
 
 
 
-app.get('/',(req,res) => {
+app.get('/login',(req,res) => {
   session=req.session;
   if(session.userid){
       res.send("Welcome User <a href=\'/logout'>click to logout</a>");
   }else
-  res.sendFile('views/index.html',{root:__dirname})
+  res.sendFile('/client/login.html',{root:__dirname})
 });
 
 

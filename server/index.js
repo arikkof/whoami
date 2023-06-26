@@ -5,7 +5,7 @@ const app = express()
 const dataModel = require("./data-model.js");
 const historyModel = require("./history-model.js");
 const countryCodes = require('country-codes-list');
-const OpenAiKey = "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";
+const { Configuration, OpenAIApi } = require("openai");
 const port = 3000
 const accepts = require('accepts'); // content negotiation
 const xml2js = require('xml2js');
@@ -69,6 +69,21 @@ async function requestNationalize(name){
   });
 }
 
+async function requestPictureOpenAI(name,age,gender,nationality){
+  let arg = {
+    "prompt": "a "+gender+" person named "+name+" of the country "+nationality+" at the age of "+age,
+    "n" : 1,
+    "size": "256x256"
+  };
+  const configuration = new Configuration({
+    apiKey: "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",
+  });
+  const openai = new OpenAIApi(configuration);
+  const response = await openai.createImage(arg);
+  image_url = response.data.data[0].url;
+  return image_url;
+}
+
 async function requestAPI(name){
     let allPromise = Promise.all([requestAgify(name),requestGenderize(name),requestNationalize(name)]);
     try{
@@ -81,7 +96,7 @@ async function requestAPI(name){
         [name]:{
             "Agify":  allInfo[0],
             "Genderize":  allInfo[1], 
-            "Nationalize":  nationalizeData
+            "Nationalize":  nationalizeData,
         }
       }
       return allData;
@@ -90,6 +105,23 @@ async function requestAPI(name){
     }
 }
 
+app.post('/api/picture', async(req,res) =>{
+  
+  try {
+    
+    let data = req.body;
+    let name = Object.entries(data)[0];
+    let age = data.Agify.age;
+    let gender = data.Genderize.gender;
+    let nationality = data.Nationalize.country[0].country_name
+    let image_url = await requestPictureOpenAI(name,age,gender,nationality);
+    res.status(200).send(image_url);
+
+  } catch (error) {
+    res.sendStatus(400);
+  }
+  
+})
 
 app.get('/api', async (req,res) => {
     //API CALL => http://localhost:3000/api?name=.....

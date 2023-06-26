@@ -7,7 +7,8 @@ const historyModel = require("./history-model.js");
 const OpenAiKey = "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";
 const port = 3000
 const accepts = require('accepts'); // content negotiation
-const xml2js = require('xml2js'); // XML Serialization
+const xml2js = require('xml2js');
+const {patchData} = require("./history-model"); // XML Serialization
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'client')));
@@ -137,14 +138,23 @@ app.post('/names/:name', (req,res)=>{
 app.put('/names/:name', (req, res) => {
   const name = req.params.name;
   const data = req.body;
-
   // Update the data using the storeData function
   historyModel.storeData(name, data);
-
   res.send('Data updated successfully');
 });
-
-
+// patch endpoint: used to partially update some resource (f.i. a single field)
+// patch is idempotent (put is not!)
+// supply patch endpoint with name of person to be changed, property, which is to be changed and (new) value
+app.patch('/names/:name/:property/:value', (req, res) => {
+    const name = req.params.name;
+    const property = req.params.property;
+    const value = req.params.value;
+    if(historyModel.patchData(name, property, value)){ // if true
+        res.send('Data patched successfully');
+    } else {
+        res.status(500).send('Data could not be patched, sorry.')
+    }
+})
 app.listen(port, () => {
     console.log(`Server now listening on http://localhost:${port}/`)
 })

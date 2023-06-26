@@ -4,16 +4,13 @@
     <title>Who Am I? | Homepage</title>
     <link rel="stylesheet" type="text/css" href="edit_person.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
 </head>
-
 <body class="body">
     <nav class="navbar"> 
         <button class="openbtn" onclick="openNav()">&#9776; Menu</button>
         <div class="navbar-logo">Who Am I?</div>
         <a class="navbar-login" href="#">Login</a>
     </nav>
-
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="/">Home</a> 
@@ -23,25 +20,24 @@
     </div>
       <main id="main">
         <h1>Edit Person</h1>
-  
         <form id="editForm">
           <label for="name">Name:</label>
           <p></p>
           <input type="text" id="name" name="name" readonly>
           <p></p>
           <input type="text" id="age" name="age" >
+            <button type="button" onClick='patchPerson("age")'>Patch</button>
           <p></p>
           <input type="text" id="gender" name="gender" >
+            <button type="button" onClick='patchPerson("gender")'>Patch</button>
           <p></p>
           <input type="text" id="nat" name="country" >
+            <button type="button" onClick='patchPerson("country")'>Patch</button>
           <p></p>
           <button type="button" onclick="putPerson()">Save</button>
           <button type="button" onclick="location.href = 'index.html'">Cancel</button>
         </form>
-      
       </main>
-
-
     <script type="text/javascript" src="edit_person.js"></script>
 </body>
 </html>

@@ -188,7 +188,7 @@ app.patch('/names/:name/:property/:value', (req, res) => {
     const property = req.params.property;
     const value = req.params.value;
     if(historyModel.patchData(name, property, value)){ // if true
-        res.send('Data patched successfully');
+        res.send(property + " patched successfully");
     } else {
         res.status(500).send('Data could not be patched, sorry.')
     }

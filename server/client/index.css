@@ -38,8 +38,9 @@ canvas {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 50%;
-  height: 50%;
+  width: 46%;
+  height: 54%;
+  margin: 2%;
 }
 
 .search {
@@ -77,16 +78,14 @@ canvas {
 
 img{
   border-radius: 10px;
+  margin: 15%;
 }
 
 .image {
   position: fixed;
   right: 0;
-  top: 0;
-  margin-top: 10%;
-  margin-left: 5%;
-  margin-right: 5%;
-  width: 40%;
+  height: 90%;
+  width: 50%;
   height: 100vh;
   object-fit: cover;
   z-index: 1;
@@ -96,10 +95,10 @@ img{
 .results {
   display: none;
   position: fixed;
-  margin: 4%;
+  margin: 1%;
   left: 0;
-  width: 40%;
-  height: 40%;
+  width: 48%;
+  height: 30%;
   border-radius: 5px;
   text-align: center;
   color: white;

@@ -71,12 +71,12 @@ async function requestNationalize(name){
 
 async function requestPictureOpenAI(name,age,gender,nationality){
   let arg = {
-    "prompt": "a "+gender+" human named "+name+" that is originaly from "+nationality+" at the age of "+age,
+    "prompt": "a "+gender+" person named "+name+" of the country "+nationality+" at the age of "+age,
     "n" : 1,
     "size": "512x512"
   };
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
   const openai = new OpenAIApi(configuration);
   const response = await openai.createImage(arg);

@@ -28,7 +28,6 @@
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
-    border-radius: 15px;
   }
   table th{
     padding-top: 12px;
@@ -36,9 +35,10 @@
     text-align: left;
     background-color: #505f8b;
     color: white;
+    border: 1px solid #ddd;
   }
   table td, table th {
-    border: 1px solid #ddd;
+    
     padding: 8px;
   }
   table tr:nth-child(even){

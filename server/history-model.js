@@ -48,7 +48,7 @@ function patchData(name, property, value){
     return true;
   }
   if(property === "country"){
-    dataOfSpecificPerson.Nationalize.country[0].country_id = value;
+    dataOfSpecificPerson.Nationalize.country[0].country_name = value;
     return true;
   }
 }

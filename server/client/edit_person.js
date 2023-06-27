@@ -34,7 +34,7 @@ function getPerson() {
     },
     Nationalize: {
       country: [
-        { country_id: nationalize, probability: 0.248 },
+        { country_id: nationalize, probability: 0.248, country_name: nationalize  },
         { country_id: 'DZ', probability: 0.245 },
         { country_id: 'SQ', probability: 0.184 },
         { country_id: 'GR', probability: 0.173 },

@@ -23,17 +23,24 @@
   display: none;
 }
 
-#chartdiv {
-  display: none;
-  position: fixed;
-  margin: 1%;
-  background-color: #fff;
-  width: 50%;
-  height: 60%;
-  grid-area: chart;
-
+  
+canvas {
+  background-color: #31343c39;
+  opacity: revert;
+  border-radius: 50px;
 }
 
+
+.chart {
+  border-radius: 50px;
+  display: none;
+  background-color: #31343c;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+}
 
 .search {
   padding-left: 10%;
@@ -68,19 +75,34 @@
   background-color: #4572a0c2;
 }
 
-.picture{
-  grid-area: pic;
+img{
+  border-radius: 10px;
 }
+
+.image {
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin-top: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 40%;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 1;
+}
+
 
 .results {
   display: none;
-  margin-right: 10%;
-  color: white;
-  padding: 20px;
+  position: fixed;
+  margin: 4%;
+  left: 0;
+  width: 40%;
+  height: 40%;
   border-radius: 5px;
   text-align: center;
-  width: 50%;
-  grid-area: result;
+  color: white;
 }
 
 .resultsData {
@@ -113,6 +135,7 @@
   touch-action: manipulation;
   vertical-align: middle;
   white-space: nowrap;
+  margin: 10px;
 }
 
 .resultsButtons:focus:not(:focus-visible):not(.focus-visible) {

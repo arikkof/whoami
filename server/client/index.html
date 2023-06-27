@@ -33,135 +33,145 @@
         <div class="results" id="results"></div>
 
         <div class="image" id="image"></div>
-
-        <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-        <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
-        <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
-        <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-
-        <div id="chartdiv"class="chart">
-        </div>
-        <script>
-            function createChart(apiData){
-                console.log(apiData)
-                //part copied from: https://www.amcharts.com/demos/map-with-animated-bubbles/#code
-                am5.ready(function(){
-                    var data = [
-                    {
-                        id: apiData.Nationalize.country[0].country_id,
-                        name: apiData.Nationalize.country[0].country_name,
-                        value: apiData.Nationalize.country[0].probability*100
-                    }, {
-                        id: apiData.Nationalize.country[1].country_id,
-                        name: apiData.Nationalize.country[1].country_name,
-                        value: apiData.Nationalize.country[1].probability*100
-                    }, {
-                        id: apiData.Nationalize.country[2].country_id,
-                        name: apiData.Nationalize.country[2].country_name,
-                        value: apiData.Nationalize.country[2].probability*100
-                    }, {
-                        id: apiData.Nationalize.country[3].country_id,
-                        name: apiData.Nationalize.country[3].country_name,
-                        value: apiData.Nationalize.country[3].probability*100
-                    }, {
-                        id: apiData.Nationalize.country[4].country_id,
-                        name: apiData.Nationalize.country[4].country_name,
-                        value: apiData.Nationalize.country[4].probability*100
-                    }
-                    ];
-
-                    var root = am5.Root.new("chartdiv");
-                    root.setThemes([am5themes_Animated.new(root)]);
-
-                    var chart = root.container.children.push(am5map.MapChart.new(root, {}));
-
-                    var polygonSeries = chart.series.push(
-                    am5map.MapPolygonSeries.new(root, {
-                        geoJSON: am5geodata_worldLow,
-                    })
-                    );
-
-                    var bubbleSeries = chart.series.push(
-                    am5map.MapPointSeries.new(root, {
-                        valueField: "value",
-                        calculateAggregates: true,
-                        polygonIdField: "id"
-                    })
-                    );
-
-                    var circleTemplate = am5.Template.new({});
-
-                    bubbleSeries.bullets.push(function(root, series, dataItem) {
-                    var container = am5.Container.new(root, {});
-
-                    var circle = container.children.push(
-                        am5.Circle.new(root, {
-                        radius: 20,
-                        fillOpacity: 0.7,
-                        fill: am5.color(0xff0000),
-                        cursorOverStyle: "pointer",
-                        tooltipText: `{name}: [bold]{value}[/]`
-                        }, circleTemplate)
-                    );
-
-                    var countryLabel = container.children.push(
-                        am5.Label.new(root, {
-                        text: "{name}",
-                        paddingLeft: 5,
-                        populateText: true,
-                        fontWeight: "bold",
-                        fontSize: 13,
-                        centerY: am5.p50
-                        })
-                    );
-
-                    circle.on("radius", function(radius) {
-                        countryLabel.set("x", radius);
-                    })
-
-                    return am5.Bullet.new(root, {
-                        sprite: container,
-                        dynamic: true
-                    });
-                    });
-
-                    bubbleSeries.bullets.push(function(root, series, dataItem) {
-                    return am5.Bullet.new(root, {
-                        sprite: am5.Label.new(root, {
-                        text: "{value.formatNumber('#.')}",
-                        fill: am5.color(0xffffff),
-                        populateText: true,
-                        centerX: am5.p50,
-                        centerY: am5.p50,
-                        textAlign: "center"
-                        }),
-                        dynamic: true
-                    });
-                    });
-
-
-
-                    // minValue and maxValue must be set for the animations to work
-                    bubbleSeries.set("heatRules", [
-                    {
-                        target: circleTemplate,
-                        dataField: "value",
-                        min: 10,
-                        max: 50,
-                        minValue: 0,
-                        maxValue: 100,
-                        key: "radius"
-                    }
-                    ]);
-
-                    bubbleSeries.data.setAll(data);
-
-                    
-                });
-            }
-            </script>
+        <div id="chartdiv"class="chart"></div>
+        
     </main>
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
+
+    
+    <script>
+        function createChart(apiData){
+            console.log(apiData)
+            //part copied from: https://www.amcharts.com/demos/map-with-animated-bubbles/#code
+            am5.ready(function(){
+                var data = [
+                {
+                    id: apiData.Nationalize.country[0].country_id,
+                    name: apiData.Nationalize.country[0].country_name,
+                    value: apiData.Nationalize.country[0].probability*100
+                }, {
+                    id: apiData.Nationalize.country[1].country_id,
+                    name: apiData.Nationalize.country[1].country_name,
+                    value: apiData.Nationalize.country[1].probability*100
+                }, {
+                    id: apiData.Nationalize.country[2].country_id,
+                    name: apiData.Nationalize.country[2].country_name,
+                    value: apiData.Nationalize.country[2].probability*100
+                }, {
+                    id: apiData.Nationalize.country[3].country_id,
+                    name: apiData.Nationalize.country[3].country_name,
+                    value: apiData.Nationalize.country[3].probability*100
+                }, {
+                    id: apiData.Nationalize.country[4].country_id,
+                    name: apiData.Nationalize.country[4].country_name,
+                    value: apiData.Nationalize.country[4].probability*100
+                }
+                ];
+
+                var root = am5.Root.new("chartdiv");
+                root.setThemes([am5themes_Animated.new(root)]);
+
+                var chart = root.container.children.push(am5map.MapChart.new(root, {  
+                panX: "rotateX",
+                panY: "rotateY",
+                projection: am5map.geoOrthographic(),
+                paddingBottom: 20,
+                paddingTop: 20,
+                paddingLeft: 20,
+                paddingRight: 20}));
+
+
+                root.interfaceColors.set("background", am5.color(0x2A2E37));
+
+                var polygonSeries = chart.series.push(
+                am5map.MapPolygonSeries.new(root, {
+                    geoJSON: am5geodata_worldLow,
+                })
+                );
+
+                var bubbleSeries = chart.series.push(
+                am5map.MapPointSeries.new(root, {
+                    valueField: "value",
+                    calculateAggregates: true,
+                    polygonIdField: "id"
+                })
+                );
+
+                var circleTemplate = am5.Template.new({});
+
+                bubbleSeries.bullets.push(function(root, series, dataItem) {
+                var container = am5.Container.new(root, {});
+
+                var circle = container.children.push(
+                    am5.Circle.new(root, {
+                    radius: 20,
+                    fillOpacity: 0.7,
+                    fill: am5.color(0xff0000),
+                    cursorOverStyle: "pointer",
+                    tooltipText: `{name}: [bold]{value}[/]`
+                    }, circleTemplate)
+                );
+
+                var countryLabel = container.children.push(
+                    am5.Label.new(root, {
+                    text: "{name}",
+                    paddingLeft: 5,
+                    populateText: true,
+                    fontWeight: "bold",
+                    fontSize: 13,
+                    centerY: am5.p50
+                    })
+                );
+
+                circle.on("radius", function(radius) {
+                    countryLabel.set("x", radius);
+                })
+
+                return am5.Bullet.new(root, {
+                    sprite: container,
+                    dynamic: true
+                });
+                });
+
+                bubbleSeries.bullets.push(function(root, series, dataItem) {
+                return am5.Bullet.new(root, {
+                    sprite: am5.Label.new(root, {
+                    text: "{value.formatNumber('#.')}",
+                    fill: am5.color(0xffffff),
+                    populateText: true,
+                    centerX: am5.p50,
+                    centerY: am5.p50,
+                    textAlign: "center"
+                    }),
+                    dynamic: true
+                });
+                });
+
+
+
+                // minValue and maxValue must be set for the animations to work
+                bubbleSeries.set("heatRules", [
+                {
+                    target: circleTemplate,
+                    dataField: "value",
+                    min: 10,
+                    max: 50,
+                    minValue: 0,
+                    maxValue: 100,
+                    key: "radius"
+                }
+                ]);
+
+                bubbleSeries.data.setAll(data);
+
+                
+            });
+        }
+        </script>
     <script type="text/javascript" src="index_homepage.js"></script>
 </body>
 </html>

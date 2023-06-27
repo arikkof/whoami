@@ -127,7 +127,7 @@ function patchPerson(property){
   const xhr = new XMLHttpRequest()
   xhr.onload = function() {
     if (xhr.status == 200 || xhr.status === 204) {
-      console.log(xhr.responseText);
+      alert(xhr.responseText);
     } else {
       alert("Changing of person data failed. Status code was " + response.status)
     }

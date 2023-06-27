@@ -40,8 +40,30 @@ function update_to_results(){
       const data = JSON.parse(xhr.responseText);
       // Handle the JSON response
       const resultsDiv = document.getElementById('results');
+      const image = document.getElementById('image');
       const name = Object.keys(data)[0];
       resultData = data[name];
+
+
+      const picturexhr = new XMLHttpRequest();
+      picturexhr.open('POST','/api/picture');
+      picturexhr.setRequestHeader("Content-Type", "application/json");
+      let pictureURL = "error";
+      picturexhr.onload = function () {
+        if (picturexhr.status === 200) {
+          console.log('send pic correct')
+           pictureURL = picturexhr.responseText;
+           const picture = document.createElement('img');
+      picture.src = pictureURL;
+      image.appendChild(picture);
+          
+        } else {
+          alert(`couldn't send picture`)
+          console.error("Failed to send pic");
+        }
+      };
+      picturexhr.send(JSON.stringify(resultData));
+  
 
       // Create an HTML representation of the data
 
@@ -62,7 +84,11 @@ function update_to_results(){
       resultsDiv.appendChild(label3);
       
       //createHiddenLabelsNationality(resultsDiv,resultData);
-
+      const label4 = document.createElement('label');
+      label4.className = 'resultsData';
+      label4.textContent = 'Nationality: ' + resultData.Nationalize.country[0].country_name;
+      resultsDiv.appendChild(label4);
+      
       
       // Reset the input field value
       nameInput.value = "";

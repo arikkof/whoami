@@ -32,6 +32,11 @@ main label {
     font-weight: bold;
 }
 
+
+.patch{
+margin-left: 90%;
+}
+
 .editButtons {
   appearance: none;
   background-color: #505f8b;

@@ -19,8 +19,7 @@
     <nav class="navbar"> 
         <button class="openbtn" onclick="openNav()">&#9776; Menu</button>
         <div class="navbar-logo">Who Am I?</div>
-        <a class="navbar-login" href="register.html">Register</a>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <a class="navbar-register" href="register.html">Register</a>
         <a class="navbar-login" href="login">Login</a>
     </nav>
 
@@ -32,7 +31,8 @@
         <a href="/about_us.html">About us</a>
     </div>
     <main id="main">
-    <form action="/user" method="post">
+        <div class="center">   
+        <form action="/user" method="post">
         <h2>Login</h2>
         <div class="input-field">
             <input type="text" name="username" id="username" placeholder="Enter Username">
@@ -42,6 +42,8 @@
         </div>
         <input type="submit" value="LogIn">
     </form>
+    </div>
+ 
     </main>
 </body>
 </html>

@@ -1,0 +1,20 @@
+@import "base.css";
+
+.center{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    padding-left: 5%;
+  }
+
+
+h1 {
+    font-weight: bold;
+}
+
+
+  .input-field{
+
+  }

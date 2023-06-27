@@ -16,7 +16,7 @@ function setPerson(data) {
   const nationalizeInput = document.getElementById('nat');
   ageInput.value = nameData.Agify.age;
   genderInput.value = nameData.Genderize.gender;
-  nationalizeInput.value = nameData.Nationalize.country[0].country_id;
+  nationalizeInput.value = nameData.Nationalize.country[0].country_name;
 }
 function getPerson() {
   const age = document.getElementById('age').value;

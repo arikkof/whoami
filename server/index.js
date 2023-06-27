@@ -76,7 +76,7 @@ async function requestPictureOpenAI(name,age,gender,nationality){
     "size": "512x512"
   };
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "sk-1OIDIeGn8lp4NMc06myiT3BhlbkFJbLl0enSVd8Hwtj8m16Zp",
   });
   const openai = new OpenAIApi(configuration);
   const response = await openai.createImage(arg);

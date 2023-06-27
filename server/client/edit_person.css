@@ -1,6 +1,6 @@
 @import "base.css";
 
-main {
+.editForm {
   font-family: 'Open Sans Condensed', arial, sans;
   border-radius: 15px;
 	width: 500px;
@@ -28,7 +28,7 @@ main input{
 	height: 45px;
 }
 
-main label {
+h1 {
     font-weight: bold;
 }
 

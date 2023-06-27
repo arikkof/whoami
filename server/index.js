@@ -3,6 +3,7 @@ const path = require("path");
 const app = express()
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
+const fs = require('fs');
 //dataModel werden wir später brauchen für die Session Sachen
 const dataModel = require("./data-model.js");
 const historyModel = require("./history-model.js");
@@ -181,9 +182,6 @@ app.use(express.static(__dirname));
 // cookie parser middleware
 app.use(cookieParser());
 
-//username and password
-const myusername = 'user1'
-const mypassword = 'mypassword'
 
 // a variable to save a session
 var session;
@@ -208,17 +206,84 @@ app.get('/login',(req,res) => {
 });
 
 
-app.post('/user',(req,res) => {
-  if(req.body.username == myusername && req.body.password == mypassword){
-      session=req.session;
-      session.userid=req.body.username;
-      console.log(req.session)
-      res.send(`Hey there, welcome <a href=\'/logout'>click to logout</a>`);
+
+
+
+app.post('/newUser', (req, res) => {
+  const { username, password } = req.body;
+
+  
+  const filePath = path.join(__dirname, 'users.json');
+
+  // Read existing user data from the file, if it exists
+  let userData = [];
+  try {
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    userData = JSON.parse(fileContent);
+  } catch (error) {
+    // Ignore error if the file doesn't exist yet
+    if (error.code !== 'ENOENT') {
+      console.error('Error reading user data:', error);
+    }
   }
-  else{
-      res.send('Invalid username or password');
+
+    // Check if the username is already taken
+    const usernameExists = userData.some((user) => user.username === username);
+    if (usernameExists) {
+      res.send('Username already taken');
+      return; // Exit the function if the username is already taken
+    }
+
+  // Add the new user to the data
+  const newUser = { username, password };
+  userData.push(newUser);
+
+  // Write the updated user data back to the file
+  fs.writeFile(filePath, JSON.stringify(userData), 'utf-8', (error) => {
+    if (error) {
+      console.error('Error writing user data:', error);
+      res.send('Failed to register user');
+    } else {
+      console.log(`User registered: ${username}`);
+      res.send('User registered successfully');
+    }
+  });
+});
+
+
+
+app.post('/user', (req, res) => {
+  const { username, password } = req.body;
+
+  // Assuming you want to store the data in a JSON file named "users.json"
+  const filePath = path.join(__dirname, 'users.json');
+
+  // Read existing user data from the file, if it exists
+  let userData = [];
+  try {
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    userData = JSON.parse(fileContent);
+  } catch (error) {
+    // Ignore error if the file doesn't exist yet
+    if (error.code !== 'ENOENT') {
+      console.error('Error reading user data:', error);
+    }
   }
-})
+
+  // Check if the username exists and password matches
+  const user = userData.find((user) => user.username === username);
+  if (user && user.password === password) {
+    session = req.session;
+    session.userid = username;
+    console.log(req.session);
+    res.send(`Hey there, welcome <a href=\'/logout'>click to logout</a>`);
+  } else {
+    res.send('Invalid username or password');
+  }
+});
+
+
+
 
 
 app.get('/logout',(req,res) => {

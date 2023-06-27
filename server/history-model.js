@@ -1,5 +1,5 @@
 let historyData = {};
-function storeData(name, data) {
+function putData(name, data) {
     if (!historyData[name]) {
         historyData[name] = [];
     }
@@ -13,6 +13,14 @@ function storeData(name, data) {
         historyData[name].push(data);
     }
 }
+
+function postData(name,data){
+  if (!historyData[name]) {
+    historyData[name] = [];
+    }
+    historyData[name].push(data);
+}
+
 function getData(name) {
     return historyData[name] || [];
 }
@@ -45,4 +53,4 @@ function patchData(name, property, value){
   }
 }
 
-module.exports = {storeData, getData, getAllData, deleteData, patchData};
+module.exports = {postData,putData, getData, getAllData, deleteData, patchData};

@@ -168,7 +168,7 @@ app.post('/names/:name', (req,res)=>{
   const requestBody = req.body;
   const name = req.params.name;
 
-  historyModel.storeData(name, requestBody);
+  historyModel.postData(name, requestBody);
 
   res.send('Request received.');
 })
@@ -177,7 +177,7 @@ app.put('/names/:name', (req, res) => {
   const name = req.params.name;
   const data = req.body;
   // Update the data using the storeData function
-  historyModel.storeData(name, data);
+  historyModel.putData(name, data);
   res.send('Data updated successfully');
 });
 // patch endpoint: used to partially update some resource (f.i. a single field)

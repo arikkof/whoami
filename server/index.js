@@ -170,7 +170,7 @@ app.post('/names/:name', (req,res)=>{
   res.send('Request received.');
   }else{
     res.status(403).send("Save is only available when logged in")
-    
+
   }
 })
 
@@ -214,7 +214,7 @@ app.listen(port, () => {
 app.get('/login',(req,res) => {
   session=req.session;
   if(session.userid){
-      res.send("Welcome User <a href=\'/logout'>click to logout</a>");
+      res.send("You are logged in <a href=\'/logout'>click to logout</a><br><a href=\'/'>home</a>");
   }else
   res.sendFile('/client/login.html',{root:__dirname})
 });
@@ -290,7 +290,7 @@ app.post('/user', (req, res) => {
     session = req.session;
     session.userid = username;
     console.log(req.session);
-    res.send(`Hey there, welcome <a href=\'/logout'>click to logout</a>`);
+    res.send(`Hey there, welcome <a href=\'/logout'>click to logout</a><br><a href=\'/'>home</a>`);
   } else {
     res.send('Invalid username or password');
   }

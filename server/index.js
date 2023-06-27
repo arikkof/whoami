@@ -13,6 +13,28 @@ const port = 3000
 const accepts = require('accepts'); // content negotiation
 const xml2js = require('xml2js');
 const {patchData} = require("./history-model"); // XML Serialization
+//serving public file
+app.use(express.static(__dirname));
+
+// cookie parser middleware
+app.use(cookieParser());
+
+// parsing the incoming data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// a variable to save a session
+var session;
+
+
+
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized:true,
+    cookie: { maxAge: oneDay },
+    resave: false 
+}));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'client')));
@@ -115,9 +137,11 @@ app.get('/api', async (req,res) => {
 app.get('/names', (req,res)=>{
   res.json(historyModel.getAllData());
  
+  
 })
 
 app.get('/names/:name', (req,res)=>{
+  
   const name = req.params.name;
   const data = historyModel.getData(name);
 
@@ -136,12 +160,18 @@ app.delete('/names/:name', (req,res)=>{
 })
 
 app.post('/names/:name', (req,res)=>{
+  session=req.session;
+  if(session.userid){
   const requestBody = req.body;
   const name = req.params.name;
 
   historyModel.storeData(name, requestBody);
 
   res.send('Request received.');
+  }else{
+    res.status(403).send("Save is only available when logged in")
+    
+  }
 })
 
 app.put('/names/:name', (req, res) => {
@@ -172,27 +202,11 @@ app.listen(port, () => {
 
 
 
-// parsing the incoming data
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-//serving public file
-app.use(express.static(__dirname));
-
-// cookie parser middleware
-app.use(cookieParser());
 
 
-// a variable to save a session
-var session;
 
-const oneDay = 1000 * 60 * 60 * 24;
-app.use(sessions({
-    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-    saveUninitialized:true,
-    cookie: { maxAge: oneDay },
-    resave: false 
-}));
+
+
 
 
 

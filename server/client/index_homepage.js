@@ -106,13 +106,17 @@ function sendData(name) {
   addToHistoryXHR.open("POST", "/names/"+name);
   addToHistoryXHR.setRequestHeader("Content-Type", "application/json");
   addToHistoryXHR.onload = function () {
+      if (addToHistoryXHR.status === 403) {
+        alert('Save is only available when logged in')
+      }else{
       if (addToHistoryXHR.status === 200) {
         alert(`\"${name}\" was successfully saved!`);
         console.log(savedPerson);
       } else {
         alert(`\"${name}\" was could not be saved!`)
         console.error("Failed to add person");
-      }
+      }}
+
     };
     addToHistoryXHR.send(JSON.stringify(savedPerson));
 }

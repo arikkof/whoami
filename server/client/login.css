@@ -60,7 +60,7 @@ h1 {
 .LogInfield {
     width: 250px;
     height: 40px;
-    padding: auto;
+    padding: 1px;
     border: none;
     border-radius: 5px;
     font-size: 12px;

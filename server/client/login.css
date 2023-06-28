@@ -36,7 +36,6 @@ h1 {
     text-align: center;
     text-decoration: none;
     user-select: none;
-    -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: middle;
     white-space: nowrap;
@@ -44,8 +43,6 @@ h1 {
 
 .input-field {
     box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     outline: none;
     display: block;
     width: 100%;

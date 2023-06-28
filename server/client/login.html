@@ -21,26 +21,26 @@
     <div class="navbar-logo">Who Am I?</div>
     <div class="nav_buttons">
         <a class="navbar-register" href="register.html">Register</a>
-        <a class="navbar-login" href="login">Login</a>
+        <a class="navbar-login" href="login.html">Login</a>
     </div>
 </nav>
 <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/">Home</a>
-    <a href="/search_history.html">Search history</a>
-    <a href="/about_us.html">About</a>
+    <a href="search_history.html">Search history</a>
+    <a href="about_us.html">About</a>
 </div>
 <main id="main">
     <div class="center">
         <form action="/user" method="post">
             <h1>Login</h1>
             <div class="input-field">
-                <input class="LogInfield" type="text" name="username" id="username" placeholder="Enter Username">
+                <label for="username"></label><input class="LogInfield" type="text" name="username" id="username" placeholder="Enter Username">
             </div>
             <div class="input-field">
-                <input class="LogInfield" type="password" name="password" id="password" placeholder="Enter Password">
+                <label for="password"></label><input class="LogInfield" type="password" name="password" id="password" placeholder="Enter Password">
             </div>
-            <input class="LogInButton" type="submit" value="LogIn">
+            <input class="LogInButton" type="submit" value="Log in">
         </form>
     </div>
 </main>

@@ -1,6 +1,9 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="base.css">
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
     <script>function openNav() {
         document.getElementById("mySidebar").style.width = "250px";
         document.getElementById("main").style.marginLeft = "250px";
@@ -16,29 +19,32 @@
     <nav class="navbar"> 
         <button class="openbtn" onclick="openNav()">&#9776; Menu</button>
         <div class="navbar-logo">Who Am I?</div>
-        <a class="navbar-login" href="register.html">Register</a>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        <a class="navbar-login" href="login">Login</a>
+        <div class="nav_buttons">
+            <a class="navbar-register" href="register.html">Register</a>
+            <a class="navbar-login" href="login">Login</a>
+        </div>
     </nav>
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="/">Home</a> 
         <a href="/search_history.html">Search history</a>
-        <a href="#">Profile</a>
-        <a href="/about_us.html">About us</a>
+        <a href="/about_us.html">About</a>
     </div>
     <main id="main">
-    <form action="/user" method="post">
-        <h2>Login</h2>
+        <div class="center">   
+        <form action="/user" method="post">
+        <h1>Login</h1>
         <div class="input-field">
-            <input type="text" name="username" id="username" placeholder="Enter Username">
+            <input class="LogInfield" type="text" name="username" id="username" placeholder="Enter Username">
         </div>
         <div class="input-field">
-            <input type="password" name="password" id="password" placeholder="Enter Password">
+            <input class="LogInfield" type="password" name="password" id="password" placeholder="Enter Password">
         </div>
-        <input type="submit" value="LogIn">
+        <input class="LogInButton" type="submit" value="LogIn">
     </form>
+    </div>
+ 
     </main>
 </body>
 </html>

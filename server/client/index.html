@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Who Am I? | Homepage</title>
     <link rel="stylesheet" type="text/css" href="index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -10,9 +11,11 @@
     <nav class="navbar"> 
         <button class="openbtn" onclick="openNav()">&#9776; Menu</button>
         <div class="navbar-logo">Who Am I?</div>
-        <a class="navbar-login" href="register.html">Register</a>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <div class="nav_buttons">
+        <a class="navbar-register" href="register.html">Register</a>
         <a class="navbar-login" href="login">Login</a>
+    </div>
+        
     </nav>
 
     <div id="mySidebar" class="sidebar">
@@ -33,7 +36,7 @@
         <div class="results" id="results"></div>
 
         <div class="image" id="image"></div>
-        <div id="chartdiv"class="chart"></div>
+        <div id="chartdiv" class="chart"></div>
         
     </main>
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
@@ -172,6 +175,6 @@
             });
         }
         </script>
-    <script type="text/javascript" src="index_homepage.js"></script>
+    <script src="index_homepage.js"></script>
 </body>
 </html>

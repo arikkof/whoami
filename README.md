@@ -21,7 +21,7 @@ node
 
 oder
 
-**nodemon server/index.js localhost 3000**
+**nodemon server/server.js localhost 3000**
 
 ## ENDPOINTS
 - *GET /api?name=example => gives back the Data from the APIs mentioned above*
